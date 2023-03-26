@@ -1,6 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="bookdetails.aspx.cs" Inherits="ElibraryManagement.bookdetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function (e) {
+                    $('#imgview').attr('src', e.target.result)   
+                    .height = (150)
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
@@ -11,8 +23,8 @@
                         <div class="row">
                             <div class="col">
                                 <center>
-                                    <img src="imgs/bookdetails.png" width="100"/>
                                     <h4>Book Details</h4>                                 
+                                    <img id="imgview" src="book_inventory/bookdetails.png" width="100"/>
                                 </center>   
                             </div>
                         </div>
@@ -90,7 +102,7 @@
                             <div class="col-md-4">
                                 <label>Genre</label>
                                     <div class="form-group mb-3">
-                                        <asp:ListBox class="form-control" ID="lbox_genre" runat="server">
+                                        <asp:ListBox class="form-control" ID="lbox_genre" runat="server" SelectionMode="Multiple" Rows="5">
                                             <asp:ListItem Text="Adventure" Value="Adventure"/>
                                             <asp:ListItem Text="Comit Book" Value="Comit Book"/>
                                             <asp:ListItem Text="Self Help" Value="Self Help"/>
@@ -210,7 +222,7 @@
                         <div class="row">
                             <div class="col">
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:elibraryDBConnectionString3 %>" SelectCommand="SELECT * FROM [book_master_tbl]"></asp:SqlDataSource>
-                                <asp:GridView ID="displayGrid" runat="server" AutoGenerateColumns="False" DataKeyNames="book_id" DataSourceID="SqlDataSource1">
+                                <asp:GridView ID="displayGrid" class="table table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="book_id" DataSourceID="SqlDataSource1">
                                     <Columns>
                                         <asp:BoundField DataField="book_id" HeaderText="book_id" ReadOnly="True" SortExpression="book_id" />
                                         <asp:BoundField DataField="book_name" HeaderText="book_name" SortExpression="book_name" />

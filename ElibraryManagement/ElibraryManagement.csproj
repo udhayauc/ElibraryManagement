@@ -69,6 +69,8 @@
   <ItemGroup>
     <Content Include="adminauthor.aspx" />
     <Content Include="adminpublisher.aspx" />
+    <Content Include="book_inventory\bookdetails.png" />
+    <Content Include="book_inventory\educated.jpg" />
     <Content Include="bookdetails.aspx" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
