@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="bookdetails.aspx.cs" Inherits="ElibraryManagement.bookdetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
+        $(document).ready(function () {
+            $(".table").prepend($("<thead></thead>").append($(this).find
+                ("tr:first"))).dataTable();
+        });
+
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -79,8 +84,7 @@
                                 <label>Publisher Name</label>
                                     <div class="form-group mb-1">
                                         <asp:DropDownList class="form-control" ID="ddlPublisherName" runat="server">
-                                            <asp:ListItem Text="Publisher 1" Value="Publisher 1"/>
-                                            <asp:ListItem Text="Publisher 2" Value="Publisher 2"/>                                            
+                                            <asp:ListItem Text=" " Value=" "/>
                                         </asp:DropDownList>                                   
                                     </div>
                             </div>
@@ -88,8 +92,7 @@
                                 <label>Author Name</label>
                                     <div class="form-group mb-1">
                                         <asp:DropDownList class="form-control" ID="ddlAuthorName" runat="server">
-                                            <asp:ListItem Text="Author 1" Value="Author 1"/>
-                                            <asp:ListItem Text="Author 2" Value="Author 2"/>                                            
+                                            <asp:ListItem Text=" " Value=" "/>
                                         </asp:DropDownList>                                   
                                     </div> 
 
@@ -209,7 +212,6 @@
                         <div class="row">
                             <div class="col">
                                 <center>
-                                    <img src="imgs/bookss.jpg" width="100"  />
                                     <h4>Book Inventory List</h4>
                                 </center>   
                             </div>
@@ -224,25 +226,62 @@
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:elibraryDBConnectionString3 %>" SelectCommand="SELECT * FROM [book_master_tbl]"></asp:SqlDataSource>
                                 <asp:GridView ID="displayGrid" class="table table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataKeyNames="book_id" DataSourceID="SqlDataSource1">
                                     <Columns>
-                                        <asp:BoundField DataField="book_id" HeaderText="book_id" ReadOnly="True" SortExpression="book_id" />
-                                        <asp:BoundField DataField="book_name" HeaderText="book_name" SortExpression="book_name" />
-                                        <asp:BoundField DataField="genre" HeaderText="genre" SortExpression="genre" />
-                                        <asp:BoundField DataField="author_name" HeaderText="author_name" SortExpression="author_name" />
-                                        <asp:BoundField DataField="publisher_name" HeaderText="publisher_name" SortExpression="publisher_name" />
-                                        <asp:BoundField DataField="publish_date" HeaderText="publish_date" SortExpression="publish_date" />
-                                        <asp:BoundField DataField="language" HeaderText="language" SortExpression="language" />
-                                        <asp:BoundField DataField="edition" HeaderText="edition" SortExpression="edition" />
-                                        <asp:BoundField DataField="book_cost" HeaderText="book_cost" SortExpression="book_cost" />
-                                        <asp:BoundField DataField="no_of_pages" HeaderText="no_of_pages" SortExpression="no_of_pages" />
-                                        <asp:BoundField DataField="book_description" HeaderText="book_description" SortExpression="book_description" />
-                                        <asp:BoundField DataField="actual_shock" HeaderText="actual_shock" SortExpression="actual_shock" />
-                                        <asp:BoundField DataField="current_shock" HeaderText="current_shock" SortExpression="current_shock" />
-                                        <asp:BoundField DataField="book_img_link" HeaderText="book_img_link" SortExpression="book_img_link" />
+                                        <asp:BoundField DataField="book_id" HeaderText="ID" ReadOnly="True" SortExpression="book_id" />
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-lg-10">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <asp:Label ID="lbl_bookName" runat="server" Font-Bold="True" Font-Size="X-Large" Text='<%# Eval("book_name") %>'></asp:Label>                                       
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    Author - <asp:Label ID="lbl_Author" runat="server" Font-Bold="True" Text='<%# Eval("author_name") %>'></asp:Label>                                       
+                                                                    &nbsp;| Genre -
+                                                                    <asp:Label ID="lbl_genre" runat="server" Font-Bold="True" Text='<%# Eval("genre") %>'></asp:Label>
+                                                                    &nbsp;| Langugae -
+                                                                    <asp:Label ID="lbl_Lang" runat="server" Font-Bold="True" Text='<%# Eval("language") %>'></asp:Label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    Publisher - <asp:Label ID="lbl_Publisher" runat="server" Font-Bold="True" Text='<%# Bind("publisher_name") %>'></asp:Label>                                       
+                                                                    &nbsp;| Publish Date -
+                                                                    <asp:Label ID="lbl_DOP" runat="server" Font-Bold="True" Text='<%# Eval("publish_date") %>'></asp:Label>
+                                                                    &nbsp;| Pages -
+                                                                    <asp:Label ID="lbl_pages" runat="server" Font-Bold="True" Text='<%# Eval("no_of_pages") %>'></asp:Label>
+                                                                     &nbsp;| Edition -
+                                                                    <asp:Label ID="lbl_Edition" runat="server" Font-Bold="True" Text='<%# Eval("edition") %>'></asp:Label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    Cost - <asp:Label ID="lbl_cost" runat="server" Font-Bold="True" Text='<%# Bind("book_cost") %>'></asp:Label>                                       
+                                                                    &nbsp;| Actual Stock -
+                                                                    <asp:Label ID="lbl_Actualstock" runat="server" Font-Bold="True" Text='<%# Eval("actual_shock") %>'></asp:Label>
+                                                                </div>
+                                                                <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    Book Description - <asp:Label ID="lbl_bookDesc" runat="server" Font-Bold="True" Text='<%# Bind("book_description") %>'></asp:Label>                                       
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <asp:Image class="img-fluid" ID="Image1" runat="server" ImageUrl='<%# Eval("book_img_link") %>' />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView> 
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

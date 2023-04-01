@@ -127,10 +127,10 @@ namespace ElibraryManagement
                 //genres = Adventure,Action,
                 genres = genres.Remove(genres.Length - 1);
 
-                string filePath = "~/book_inventory/bookdetails.png";
+                string filePath = "/book_inventory/bookdetails.png";
                 string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
                 FileUpload1.SaveAs(Server.MapPath("book_inventory/" + fileName));
-                filePath = "~book_inventory/" + fileName;
+                filePath = "book_inventory/" + fileName;
                 SqlConnection con = new SqlConnection(strCon);
                 if (con.State == ConnectionState.Closed)
                 {
@@ -181,10 +181,14 @@ namespace ElibraryManagement
                 SqlCommand cmd = new SqlCommand(strInsert, con);
                 cmd.Parameters.AddWithValue("@bookID", txt_bookID.Text);
 
-                cmd.ExecuteNonQuery();
+                int x = cmd.ExecuteNonQuery();
                 con.Close();
+                if(x > 0)
                 Response.Write("<script>alert('Book Deleted Successfully');</script>");
+                else
+                Response.Write("<script>alert('Invalid Book ID');</script>");
                 displayGrid.DataBind();
+                clearForm();
             }
             catch (Exception ex)
             {
@@ -243,8 +247,6 @@ namespace ElibraryManagement
             txt_bookID.Text = "";
             txt_bookName.Text = "";
             lbox_genre.Text = "";
-            ddlAuthorName.Text = "";
-            ddlPublisherName.Text = "";
             txt_publishDate.Text = "";
             ddlLanguage.Text = "";
             txt_Edition.Text = "";
