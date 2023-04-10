@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminbookissue.aspx.cs" Inherits="ElibraryManagement.WebForm4" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminbookissuing.aspx.cs" Inherits="ElibraryManagement.adminbookissuing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-fluid">
+        <div class="container-fluid">
         <div class="row">
             <div class="col-md-5">
                 <div class="card">
@@ -24,15 +24,15 @@
                             <div class="col-md-6">
                                 <label>Member ID</label>
                                     <div class="form-group mb-1">
-                                        <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Member ID"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txt_memberID" runat="server" placeholder="Member ID"></asp:TextBox>
                                     </div>
                             </div>
                             <div class="col-md-6">
                                 <label>Book ID</label>
                                     <div class="form-group mb-1">
                                         <div class="input-group">
-                                        <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Book ID"></asp:TextBox>
-                                        <asp:Button class="btn btn-secondary" ID="Button2" runat="server" Text="Go" />  
+                                        <asp:TextBox CssClass="form-control" ID="txt_BookID" runat="server" placeholder="Book ID"></asp:TextBox>
+                                        <asp:Button class="btn btn-secondary" ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" />  
                                         </div>
                                     </div>                            
                             </div>
@@ -41,14 +41,14 @@
                             <div class="col-md-6">
                                 <label>Member Name</label>
                                     <div class="form-group mb-1">
-                                        <asp:TextBox CssClass="form-control" ID="TextBox3" runat="server"
+                                        <asp:TextBox CssClass="form-control" ID="txt_memName" runat="server"
                                             placeholder="Member Name" ReadOnly="true"></asp:TextBox>
                                     </div>
                             </div>
                             <div class="col-md-6">
                                 <label>Book Name</label>
                                     <div class="form-group mb-3">
-                                        <asp:TextBox CssClass="form-control" ID="TextBox4" runat="server" 
+                                        <asp:TextBox CssClass="form-control" ID="txt_bookName" runat="server" 
                                             placeholder="Book Name" ReadOnly="true"></asp:TextBox>
                                     </div>  
                             </div>
@@ -58,14 +58,14 @@
                             <div class="col-md-6">
                                 <label>Start Date</label>
                                     <div class="form-group mb-1">
-                                        <asp:TextBox CssClass="form-control" ID="TextBox5" runat="server"
+                                        <asp:TextBox CssClass="form-control" ID="txt_startDate" runat="server"
                                             placeholder="Start Date" TextMode="Date"></asp:TextBox>
                                     </div>
                             </div>
                             <div class="col-md-6">
                                 <label>End Date</label>
                                     <div class="form-group mb-3">
-                                        <asp:TextBox CssClass="form-control" ID="TextBox6" runat="server" 
+                                        <asp:TextBox CssClass="form-control" ID="txt_endDate" runat="server" 
                                             placeholder="End Date" TextMode="Date"></asp:TextBox>
                                     </div>  
                             </div>
@@ -74,12 +74,12 @@
                         <div class="row">
                             <div class="col-4 mx-auto">                       
                                 <div class="form-group d-grid gap-2 mb-1">
-                                    <asp:Button class="btn btn-primary btn-block" ID="Button1" runat="server" Text="Issue" />
+                                    <asp:Button class="btn btn-primary btn-block" ID="btnIssue" runat="server" Text="Issue" OnClick="btnIssue_Click" />
                                 </div>      
                             </div>
                             <div class="col-4 mx-auto">                       
                                 <div class="form-group d-grid gap-2 mb-1">
-                                    <asp:Button class="btn btn-success btn-block" ID="Button3" runat="server" Text="Return" />
+                                    <asp:Button class="btn btn-success btn-block" ID="btnReturn" runat="server" Text="Return" OnClick="btnReturn_Click" />
                                 </div>      
                             </div>
                         </div>                                   
@@ -110,19 +110,18 @@
                             </div>
                         </div>
                         <div class="row">
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:elibraryDBConnectionString %>" SelectCommand="SELECT * FROM [book_issue_tbl]"></asp:SqlDataSource>
                             <div class="col">
-                                <table>
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                </table>
+                                <asp:GridView ID="displayGrid" class="table table-striped table-bordered" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDataBound="displayGrid_RowDataBound" >
+                                    <Columns>
+                                        <asp:BoundField DataField="member_id" HeaderText="Member ID" SortExpression="member_id" />
+                                        <asp:BoundField DataField="member_name" HeaderText="Member Name" SortExpression="member_name" />
+                                        <asp:BoundField DataField="book_id" HeaderText="Book ID" SortExpression="book_id" />
+                                        <asp:BoundField DataField="book_name" HeaderText="Book Name" SortExpression="book_name" />
+                                        <asp:BoundField DataField="issue_date" HeaderText="Issue Date" SortExpression="issue_date" />
+                                        <asp:BoundField DataField="due_date" HeaderText="Due Date" SortExpression="due_date" />
+                                    </Columns>
+                                </asp:GridView>              
                             </div>
                         </div>
 
@@ -131,4 +130,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

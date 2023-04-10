@@ -52,7 +52,7 @@
                                 <label>Book ID</label>
                                     <div class="form-group mb-1">
                                         <div class="input-group mx-1">
-                                        <asp:TextBox CssClass="form-control" ID="txt_bookID" runat="server" placeholder="Member ID"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txt_bookID" runat="server" placeholder="Book ID"></asp:TextBox>
                                         <asp:LinkButton class="btn btn-primary" ID="LinkButton4" runat="server" 
                                             Text="Go" OnClick="btnGo"></asp:LinkButton>
                                         </div>
@@ -62,7 +62,7 @@
                                 <label>Book Name</label>
                                     <div class="form-group mb-3">
                                         <asp:TextBox CssClass="form-control" ID="txt_bookName" runat="server" 
-                                            placeholder="Full Name"></asp:TextBox>
+                                            placeholder="Book Name"></asp:TextBox>
                                     </div>  
                             </div>                        
                         </div>

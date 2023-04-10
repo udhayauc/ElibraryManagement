@@ -95,7 +95,7 @@ namespace ElibraryManagement
 
         protected void LinkButton10_Click(object sender, EventArgs e)
         {
-            Response.Redirect("adminbookissue.aspx");
+            Response.Redirect("adminbookissuing.aspx");
         }
 
         protected void LinkButton11_Click(object sender, EventArgs e)
@@ -115,7 +115,7 @@ namespace ElibraryManagement
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("bookdetails.aspx");
+            Response.Redirect("viewbooks.aspx");
         }
         //logout button
         protected void LinkButton4_Click(object sender, EventArgs e)
@@ -141,5 +141,9 @@ namespace ElibraryManagement
             Response.Redirect("homepage.aspx");
         }
 
+        protected void LinkButton5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("userprofile.aspx");
+        }
     }
 }

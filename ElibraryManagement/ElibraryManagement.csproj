@@ -67,7 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aboutus.aspx" />
     <Content Include="adminauthor.aspx" />
+    <Content Include="adminbookissuing.aspx" />
     <Content Include="adminpublisher.aspx" />
     <Content Include="book_inventory\bookdetails.png" />
     <Content Include="book_inventory\educated.jpg" />
@@ -2142,31 +2144,49 @@
     <Content Include="imgs\bookissuing.png" />
     <Content Include="imgs\bookss.jpg" />
     <Content Include="imgs\e-library.png" />
+    <Content Include="imgs\elibrary.jpg" />
     <Content Include="imgs\home.jpeg" />
     <Content Include="imgs\home2.jpeg" />
     <Content Include="imgs\memberlist.png" />
     <Content Include="imgs\memlist.png" />
     <Content Include="imgs\searchbooks.png" />
     <Content Include="imgs\signup.png" />
+    <Content Include="imgs\t&amp;c.jpg" />
+    <Content Include="imgs\terms.jpg" />
     <Content Include="imgs\user1.png" />
     <Content Include="imgs\publisher.png" />
     <Content Include="imgs\user.png" />
     <Content Include="memberdetails.aspx" />
+    <Content Include="terms.aspx" />
     <Content Include="userprofile.aspx" />
     <Content Include="usersignup.aspx" />
+    <Content Include="viewbooks.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="userlogin.aspx" />
     <Content Include="adminlogin.aspx" />
-    <Content Include="adminbookissue.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aboutus.aspx.cs">
+      <DependentUpon>aboutus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aboutus.aspx.designer.cs">
+      <DependentUpon>aboutus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="adminauthor.aspx.cs">
       <DependentUpon>adminauthor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="adminauthor.aspx.designer.cs">
       <DependentUpon>adminauthor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminbookissuing.aspx.cs">
+      <DependentUpon>adminbookissuing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminbookissuing.aspx.designer.cs">
+      <DependentUpon>adminbookissuing.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminpublisher.aspx.cs">
       <DependentUpon>adminpublisher.aspx</DependentUpon>
@@ -2204,6 +2224,13 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
+    <Compile Include="terms.aspx.cs">
+      <DependentUpon>terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="terms.aspx.designer.cs">
+      <DependentUpon>terms.aspx</DependentUpon>
+    </Compile>
     <Compile Include="userprofile.aspx.cs">
       <DependentUpon>userprofile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2217,6 +2244,13 @@
     </Compile>
     <Compile Include="usersignup.aspx.designer.cs">
       <DependentUpon>usersignup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewbooks.aspx.cs">
+      <DependentUpon>viewbooks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewbooks.aspx.designer.cs">
+      <DependentUpon>viewbooks.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -2238,13 +2272,6 @@
     </Compile>
     <Compile Include="adminlogin.aspx.designer.cs">
       <DependentUpon>adminlogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="adminbookissue.aspx.cs">
-      <DependentUpon>adminbookissue.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="adminbookissue.aspx.designer.cs">
-      <DependentUpon>adminbookissue.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
